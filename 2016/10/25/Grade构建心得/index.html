@@ -53,12 +53,6 @@
   
 
   
-    
-      
-    
-
-    
-  
 
   
     
@@ -79,7 +73,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lato:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -114,7 +108,7 @@
 <meta property="og:url" content="ykfcol.com/2016/10/25/Grade构建心得/index.html">
 <meta property="og:site_name" content="杨凯丰的个人博客">
 <meta property="og:description" content="刚接触Android的人，可能对Gradle有点茫然。Gradle是什么？有效的管理Gradle有什么用？">
-<meta property="og:updated_time" content="2016-10-25T16:31:25.000Z">
+<meta property="og:updated_time" content="2016-10-25T16:41:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gradle构建心得">
 <meta name="twitter:description" content="刚接触Android的人，可能对Gradle有点茫然。Gradle是什么？有效的管理Gradle有什么用？">
@@ -395,14 +389,18 @@
     xiaomi{}
     baidu{}
 }
-</code></pre><h3 id="配置签名信息（SigningConfigs）"><a href="#配置签名信息（SigningConfigs）" class="headerlink" title="配置签名信息（SigningConfigs）"></a>配置签名信息（SigningConfigs）</h3><p>签名一个应用需要（debug使用默认的）以下文件</p>
+</code></pre><h3 id="配置签名信息（SigningConfigs）"><a href="#配置签名信息（SigningConfigs）" class="headerlink" title="配置签名信息（SigningConfigs）"></a>配置签名信息（SigningConfigs）</h3><blockquote>
+<p>签名一个应用需要（debug使用默认的）以下文件</p>
+</blockquote>
 <ul>
 <li>storeFile 签名文件</li>
 <li>storePassword  密码</li>
 <li>keyAlias  别名</li>
 <li>keyPassword  key密码</li>
 </ul>
+<blockquote>
 <p>配置release版本的签名信息：</p>
+</blockquote>
 <pre><code>release { 
     storeFile file(&quot;other.keystore&quot;) 
     storePassword &quot;android&quot;
