@@ -84,15 +84,21 @@
 
 
 
-<meta name="description" content="一个郁郁不得志的王者">
-<meta property="og:type" content="website">
+<meta name="description" content="Grade构建心得刚接触Android的人，可能对Gradle有点茫然。Gradle是什么？有效的管理Gradle有什么用？
+随着项目的不断壮大，我们每天在build，签名，打包(分渠道)，发布，甚至项目依赖的更替，差异管理花费的时间越来越多了。都说程序员擅长“偷懒”，擅长写脚本(听说有人要消灭这些破坏世界和平的人？哈哈哈。。)，那么有没有一种工具可以帮我们简化这个过程，把这个过程用代码的方式描述">
+<meta property="og:type" content="article">
 <meta property="og:title" content="杨凯丰的个人博客">
-<meta property="og:url" content="www.ykfcol.com/index.html">
+<meta property="og:url" content="www.ykfcol.com/2016/10/25/Grade构建心得/index.html">
 <meta property="og:site_name" content="杨凯丰的个人博客">
-<meta property="og:description" content="一个郁郁不得志的王者">
+<meta property="og:description" content="Grade构建心得刚接触Android的人，可能对Gradle有点茫然。Gradle是什么？有效的管理Gradle有什么用？
+随着项目的不断壮大，我们每天在build，签名，打包(分渠道)，发布，甚至项目依赖的更替，差异管理花费的时间越来越多了。都说程序员擅长“偷懒”，擅长写脚本(听说有人要消灭这些破坏世界和平的人？哈哈哈。。)，那么有没有一种工具可以帮我们简化这个过程，把这个过程用代码的方式描述">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2549195-b5861b627f4ecf8a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-10-25T06:46:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="杨凯丰的个人博客">
-<meta name="twitter:description" content="一个郁郁不得志的王者">
+<meta name="twitter:description" content="Grade构建心得刚接触Android的人，可能对Gradle有点茫然。Gradle是什么？有效的管理Gradle有什么用？
+随着项目的不断壮大，我们每天在build，签名，打包(分渠道)，发布，甚至项目依赖的更替，差异管理花费的时间越来越多了。都说程序员擅长“偷懒”，擅长写脚本(听说有人要消灭这些破坏世界和平的人？哈哈哈。。)，那么有没有一种工具可以帮我们简化这个过程，把这个过程用代码的方式描述">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2549195-b5861b627f4ecf8a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -113,10 +119,10 @@
 
 
 
-  <link rel="canonical" href="www.ykfcol.com/"/>
+  <link rel="canonical" href="www.ykfcol.com/2016/10/25/Grade构建心得/"/>
 
 
-  <title> 杨凯丰的个人博客 </title>
+  <title>  | 杨凯丰的个人博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -137,9 +143,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -226,9 +230,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -249,9 +253,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/25/Grade构建心得/" itemprop="url">
-                  未命名
-                </a>
               
             
           </h1>
@@ -291,9 +292,7 @@
       
 
       
-        
-          
-            <h1 id="Grade构建心得"><a href="#Grade构建心得" class="headerlink" title="Grade构建心得"></a>Grade构建心得</h1><p>刚接触Android的人，可能对Gradle有点茫然。Gradle是什么？有效的管理Gradle有什么用？</p>
+        <h1 id="Grade构建心得"><a href="#Grade构建心得" class="headerlink" title="Grade构建心得"></a>Grade构建心得</h1><p>刚接触Android的人，可能对Gradle有点茫然。Gradle是什么？有效的管理Gradle有什么用？</p>
 <p>随着项目的不断壮大，我们每天在build，签名，打包(分渠道)，发布，甚至项目依赖的更替，差异管理花费的时间越来越多了。都说程序员擅长“偷懒”，擅长写脚本(听说有人要消灭这些破坏世界和平的人？哈哈哈。。)，那么有没有一种工具可以帮我们简化这个过程，把这个过程用代码的方式描述出来？</p>
 <p>##如何有效的管理我们的Gradle脚本？</p>
 <p>###版本号与依赖管理<br>对项目的版本以及依赖库的版本号进行统一管理，这里不做详细说明，具体可参考<a href="http://www.jianshu.com/p/edd495d8efc8" target="_blank" rel="external">http://www.jianshu.com/p/edd495d8efc8</a></p>
@@ -361,16 +360,20 @@
 <p>#####去除不想添加到apk的配置文件<br>    packagingOptions {<br>        exclude ‘META-INF/DEPENDENCIES.txt’<br>        exclude ‘META-INF/LICENSE.txt’<br>        exclude ‘META-INF/NOTICE.txt’<br>        exclude ‘META-INF/NOTICE’<br>        exclude ‘META-INF/LICENSE’<br>        exclude ‘META-INF/DEPENDENCIES’<br>        exclude ‘META-INF/notice.txt’<br>        exclude ‘META-INF/license.txt’<br>        exclude ‘META-INF/dependencies.txt’<br>        exclude ‘META-INF/LGPL2.1’ }<br>Android Studio 2.2版本引入新的apk分析功能，感兴趣的童鞋可以去研究研究自己应用的结构</p>
 <p>###最后<br>关于Gradle配置的内容还有很多，欢迎小伙伴们补充~</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
@@ -378,112 +381,32 @@
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/10/24/写在前面的话/" rel="next" title="写在前面的话">
+                <i class="fa fa-chevron-left"></i> 写在前面的话
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/10/24/写在前面的话/" itemprop="url">
-                  写在前面的话
-                </a>
-              
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-24T15:39:36+08:00" content="2016-10-24">
-              2016-10-24
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -491,6 +414,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -510,8 +437,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/3.png"
@@ -547,6 +483,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Grade构建心得"><span class="nav-number">1.</span> <span class="nav-text">Grade构建心得</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -643,6 +590,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
