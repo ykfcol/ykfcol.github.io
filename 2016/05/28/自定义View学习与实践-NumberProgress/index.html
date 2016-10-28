@@ -1,0 +1,758 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="这段时间有点迷上了自定义View，好像找回了一点以前做数学题的感觉。
+写一个系列记录自己的自定义View学习之路~">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义View学习与实践-NumberProgress">
+<meta property="og:url" content="ykfcol.com/2016/05/28/自定义View学习与实践-NumberProgress/index.html">
+<meta property="og:site_name" content="杨凯丰的个人博客">
+<meta property="og:description" content="这段时间有点迷上了自定义View，好像找回了一点以前做数学题的感觉。
+写一个系列记录自己的自定义View学习之路~">
+<meta property="og:image" content="ykfcol.com/Users/ykf/Android/gif/progress.gif">
+<meta property="og:updated_time" content="2016-10-28T17:36:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自定义View学习与实践-NumberProgress">
+<meta name="twitter:description" content="这段时间有点迷上了自定义View，好像找回了一点以前做数学题的感觉。
+写一个系列记录自己的自定义View学习之路~">
+<meta name="twitter:image" content="ykfcol.com/Users/ykf/Android/gif/progress.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="ykfcol.com/2016/05/28/自定义View学习与实践-NumberProgress/"/>
+
+
+  <title> 自定义View学习与实践-NumberProgress | 杨凯丰的个人博客 </title>
+</head>
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">杨凯丰的个人博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                自定义View学习与实践-NumberProgress
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-28T22:40:18+08:00" content="2016-05-28">
+              2016-05-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/28/自定义View学习与实践-NumberProgress/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/28/自定义View学习与实践-NumberProgress/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+		  	 <span id="/2016/05/28/自定义View学习与实践-NumberProgress/"class="leancloud_visitors"  data-flag-title="自定义View学习与实践-NumberProgress">
+            &nbsp; | &nbsp; 阅读次数
+            </span>
+	 
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>这段时间有点迷上了自定义View，好像找回了一点以前做数学题的感觉。</p>
+<p>写一个系列记录自己的自定义View学习之路~</p>
+</blockquote>
+<a id="more"></a>
+<p>先上图吧</p>
+<p> <img src="/Users/ykf/Android/gif/progress.gif" alt="progress"></p>
+<h3 id="确定View属性"><a href="#确定View属性" class="headerlink" title="确定View属性"></a>确定View属性</h3><p>如图所示，整个控件可以分为三部分，读过的进度条，进度条文字，未读到的进度条。</p>
+<p>我们需要什么属性呢？</p>
+<ul>
+<li>读过的进度条高度  </li>
+<li>读过的进度条颜色    </li>
+<li>进度条文字大小     </li>
+<li>进度条文字颜色</li>
+<li>文字距离左边的距离</li>
+<li>是否要显示文字</li>
+<li>当前进度</li>
+<li>总进度</li>
+<li>未读过进度条的高度</li>
+<li>未读过进度条的颜色</li>
+</ul>
+<p>得到我们需要的属性，然后定义属性集合</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;declare-styleable name="NumberProgressBar"&gt;</div><div class="line">        &lt;attr name="progress_current" format="integer"/&gt;</div><div class="line">        &lt;attr name="progress_max" format="integer"/&gt;</div><div class="line"></div><div class="line">        &lt;attr name="progress_unreached_color" format="color"/&gt;</div><div class="line">        &lt;attr name="progress_reached_color" format="color"/&gt;</div><div class="line"></div><div class="line">        &lt;attr name="progress_reached_bar_height" format="dimension"/&gt;</div><div class="line">        &lt;attr name="progress_unreached_bar_height" format="dimension"/&gt;</div><div class="line"></div><div class="line">        &lt;attr name="progress_text_size" format="dimension"/&gt;</div><div class="line">        &lt;attr name="progress_text_color" format="color"/&gt;</div><div class="line"></div><div class="line">        &lt;attr name="progress_text_offset" format="dimension"/&gt;</div><div class="line"></div><div class="line">        &lt;attr name="progress_text_visibility" format="enum"&gt;</div><div class="line">            &lt;enum name="visible" value="0"/&gt;</div><div class="line">            &lt;enum name="invisible" value="1"/&gt;</div><div class="line">        &lt;/attr&gt;</div><div class="line">&lt;/declare-styleable&gt;</div></pre></td></tr></table></figure>
+<p><strong>在构造函数中初始化（属性，绘制对象）</strong></p>
+<blockquote>
+<p>刚开始就创建对象是个很重要的优化技巧，View会被频繁绘制，在onDraw()中创建绘制对象会严重影响到性能并使你的UI显得卡顿</p>
+</blockquote>
+<p>这里我们需要三个画笔分别对应上文提到的三个部分</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">mReachedBarPaint = <span class="keyword">new</span> Paint(Paint.ANTI_ALIAS_FLAG);</div><div class="line">mReachedBarPaint.setColor(mReachedBarColor);</div><div class="line"></div><div class="line">mUnreachedBarPaint = <span class="keyword">new</span> Paint(Paint.ANTI_ALIAS_FLAG);</div><div class="line">mUnreachedBarPaint.setColor(mUnreachedBarColor);</div><div class="line"></div><div class="line">mTextPaint = <span class="keyword">new</span> Paint(Paint.ANTI_ALIAS_FLAG);</div><div class="line">mTextPaint.setColor(mTextColor);</div><div class="line">mTextPaint.setTextSize(mTextSize);</div></pre></td></tr></table></figure>
+<h3 id="测量"><a href="#测量" class="headerlink" title="测量"></a>测量</h3><p>接下来是测量出控件的实际大小</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</div><div class="line">    setMeasuredDimension(measure(widthMeasureSpec, <span class="keyword">true</span>), measure(heightMeasureSpec, <span class="keyword">false</span>));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">measure</span><span class="params">(<span class="keyword">int</span> measureSpec, <span class="keyword">boolean</span> isWidth)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> result;</div><div class="line">    <span class="keyword">int</span> mode = MeasureSpec.getMode(measureSpec);</div><div class="line">    <span class="keyword">int</span> size = MeasureSpec.getSize(measureSpec);</div><div class="line">    <span class="keyword">int</span> padding = isWidth ? getPaddingLeft() + getPaddingRight() </div><div class="line">      : getPaddingTop() + getPaddingBottom();</div><div class="line">    <span class="keyword">if</span> (mode == MeasureSpec.EXACTLY) &#123;   <span class="comment">//EXACTLY 表示父布局决定子布局大小</span></div><div class="line">        result = size;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        result = isWidth ? getSuggestedMinimumWidth() : getSuggestedMinimumHeight();</div><div class="line">        result += padding;</div><div class="line">        <span class="keyword">if</span> (mode == MeasureSpec.AT_MOST) &#123;    <span class="comment">//AT_MOST 不超过父布局的最大尺寸</span></div><div class="line">            <span class="keyword">if</span> (isWidth) &#123;</div><div class="line">                result = Math.max(result, size);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                result = Math.min(result, size);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们在测量精确尺寸的时候需要给出一个宽高的最小值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSuggestedMinimumWidth</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>) mTextSize;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSuggestedMinimumHeight</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> Math.max((<span class="keyword">int</span>) mTextSize, Math.max((<span class="keyword">int</span>) mReachedHeight, (<span class="keyword">int</span>) mUnReachedHeight));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="绘制"><a href="#绘制" class="headerlink" title="绘制"></a>绘制</h3><p>得到控件的实际大小，我们就要开始绘制了，绘制也分三部分，绘制进度，绘制读过的部分，绘制未读的部分。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</div><div class="line">	<span class="comment">//判断是否要显示进度</span></div><div class="line">    <span class="keyword">if</span> (mIsShowText) &#123;</div><div class="line">        calculatorDrawRectF();</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        calculatorDrawRectFWithoutText();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//画读过的进度条</span></div><div class="line">    <span class="keyword">if</span> (mIsDrawReached) &#123;</div><div class="line">        canvas.drawRect(mReachedRectF, mReachedPaint);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//画未读的进度条</span></div><div class="line">    <span class="keyword">if</span> (mIsDrawUnReached) &#123;</div><div class="line">        canvas.drawRect(mUnReachedRectF, mUnReachedPaint);</div><div class="line">    &#125;</div><div class="line">	<span class="comment">//判断是否要显示进度，false则不绘制进度</span></div><div class="line">    <span class="keyword">if</span> (mIsShowText) &#123;</div><div class="line">        canvas.drawText(mCurrentDrawText, mDrawTextStart, mDrawTextEnd, mTextPaint);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果不需要进度显示，我们只需要考虑读过的部分和未读的部分的绘制</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">calculatorDrawRectFWithoutText</span><span class="params">()</span> </span>&#123;</div><div class="line">    mReachedRectF.left = getPaddingLeft();</div><div class="line">    mReachedRectF.top = getHeight() / <span class="number">2.0f</span> - mReachedHeight / <span class="number">2.0f</span>;</div><div class="line">    mReachedRectF.right = (getWidth() - getPaddingLeft() - getPaddingRight()) </div><div class="line">    		/ (getMax() * <span class="number">1.0f</span>) * getProgress()+ getPaddingLeft();</div><div class="line">    mReachedRectF.bottom = getHeight() / <span class="number">2.0f</span> + mReachedHeight / <span class="number">2.0f</span>;</div><div class="line"></div><div class="line">    mUnReachedRectF.left = mReachedRectF.right;</div><div class="line">    mUnReachedRectF.right = getWidth() - getPaddingRight();</div><div class="line">    mUnReachedRectF.top = getHeight() / <span class="number">2.0f</span> - mUnReachedHeight / <span class="number">2.0f</span>;</div><div class="line">    mUnReachedRectF.bottom = getHeight() / <span class="number">2.0f</span> + mUnReachedHeight / <span class="number">2.0f</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>需要显示进度</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">calculateDrawRectF</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="comment">//得到进度字样</span></div><div class="line">        mCurrentDrawText = String.format(<span class="string">"%d"</span>, getProgress() * <span class="number">100</span> / getMax());</div><div class="line">        mCurrentDrawText = mPrefix + mCurrentDrawText + mSuffix;</div><div class="line">        <span class="comment">//测出进度字样宽度</span></div><div class="line">        mDrawTextWidth = mTextPaint.measureText(mCurrentDrawText);</div><div class="line"></div><div class="line">		<span class="comment">//如果进度为0，则没有读过的那部分进度条</span></div><div class="line">        <span class="keyword">if</span> (getProgress() == <span class="number">0</span>) &#123;</div><div class="line">            mDrawReachedBar = <span class="keyword">false</span>;</div><div class="line">            mDrawTextStart = getPaddingLeft();</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            mDrawReachedBar = <span class="keyword">true</span>;</div><div class="line">            mReachedRectF.left = getPaddingLeft();</div><div class="line">            mReachedRectF.top = getHeight() / <span class="number">2.0f</span> - mReachedBarHeight / <span class="number">2.0f</span>;</div><div class="line">            mReachedRectF.right = (getWidth() - getPaddingLeft() - getPaddingRight())</div><div class="line">            		/ (getMax() * <span class="number">1.0f</span>) * getProgress() - mOffset + getPaddingLeft();</div><div class="line">            mReachedRectF.bottom = getHeight() / <span class="number">2.0f</span> + mReachedBarHeight / <span class="number">2.0f</span>;</div><div class="line">            mDrawTextStart = (mReachedRectF.right + mOffset);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        mDrawTextEnd = (<span class="keyword">int</span>) ((getHeight() / <span class="number">2.0f</span>) - (</div><div class="line">        		(mTextPaint.descent() + mTextPaint.ascent()) / <span class="number">2.0f</span>));</div><div class="line"></div><div class="line">		<span class="comment">//如果进度字样显示超出了父控件最大宽度，做相应处理</span></div><div class="line">        <span class="keyword">if</span> ((mDrawTextStart + mDrawTextWidth) &gt;= getWidth() - getPaddingRight()) &#123;</div><div class="line">            mDrawTextStart = getWidth() - getPaddingRight() - mDrawTextWidth;</div><div class="line">            mReachedRectF.right = mDrawTextStart - mOffset;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">float</span> unreachedBarStart = mDrawTextStart + mDrawTextWidth;</div><div class="line">        <span class="keyword">if</span> (unreachedBarStart &gt;= getWidth() - getPaddingRight()) &#123;</div><div class="line">        	<span class="comment">//进度字样显示超出了父控件最大宽度，不显示未读部分</span></div><div class="line">            mDrawUnreachedBar = <span class="keyword">false</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            mDrawUnreachedBar = <span class="keyword">true</span>;</div><div class="line">            mUnreachedRectF.left = unreachedBarStart;</div><div class="line">            mUnreachedRectF.right = getWidth() - getPaddingRight();</div><div class="line">            mUnreachedRectF.top = getHeight() / <span class="number">2.0f</span> + -mUnreachedBarHeight / <span class="number">2.0f</span>;</div><div class="line">            mUnreachedRectF.bottom = getHeight() / <span class="number">2.0f</span> + mUnreachedBarHeight / <span class="number">2.0f</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="加载效果"><a href="#加载效果" class="headerlink" title="加载效果"></a>加载效果</h3><p>实现动态加载效果的原理是通过进度值的递增对View进行重绘，这里我们添加回调接口，对进度值达到100%做相应的处理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">incrementProgressBy</span><span class="params">(<span class="keyword">int</span> by)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (by &gt; <span class="number">0</span>) &#123;</div><div class="line">        setProgress(getProgress() + by);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//回调接口</span></div><div class="line">    <span class="keyword">if</span>(mListener != <span class="keyword">null</span>)&#123;</div><div class="line">        mListener.onProgressChange(getProgress(), getMax());</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setProgress</span><span class="params">(<span class="keyword">int</span> progress)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (progress &lt;= getMax() &amp;&amp; progress &gt;= <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">this</span>.mCurrentProgress = progress;</div><div class="line">        invalidate();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/26/给你的状态栏着色/" rel="next" title="给你的状态栏着色">
+                <i class="fa fa-chevron-left"></i> 给你的状态栏着色
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/28/自定义View学习与实践-NumberProgress/"
+           data-title="自定义View学习与实践-NumberProgress" data-url="ykfcol.com/2016/05/28/自定义View学习与实践-NumberProgress/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/3.png"
+               alt="风中追枫" />
+          <p class="site-author-name" itemprop="name">风中追枫</p>
+          <p class="site-description motion-element" itemprop="description">一个郁郁不得志的王者</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#确定View属性"><span class="nav-number">1.</span> <span class="nav-text">确定View属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测量"><span class="nav-number">2.</span> <span class="nav-text">测量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制"><span class="nav-number">3.</span> <span class="nav-text">绘制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载效果"><span class="nav-number">4.</span> <span class="nav-text">加载效果</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">风中追枫</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ykfcol"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("DIkB4rnHYXyuETeh4fwDYc6x-gzGzoHsz", "noBDhvWp45D5qgm7OFems4jL");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = $(document.getElementById(url)).text() + ': 0';
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = $(document.getElementById(url)).text() + ': ' + object.get('time');
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = $(document.getElementById(url)).text() + ': ' + counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = $(document.getElementById(url)).text() + ': ' + newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+
+  
+
+  
+
+</body>
+</html>
