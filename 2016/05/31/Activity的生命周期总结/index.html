@@ -102,16 +102,15 @@
 
 
 
-<meta name="description" content="刚接触Android的人，可能对Gradle有点茫然。Gradle是什么？有效的管理Gradle有什么用？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Gradle构建心得">
-<meta property="og:url" content="ykfcol.com/2016/05/25/Grade构建心得/index.html">
+<meta property="og:title" content="Activity的生命周期总结">
+<meta property="og:url" content="ykfcol.com/2016/05/31/Activity的生命周期总结/index.html">
 <meta property="og:site_name" content="杨凯丰的个人博客">
-<meta property="og:description" content="刚接触Android的人，可能对Gradle有点茫然。Gradle是什么？有效的管理Gradle有什么用？">
-<meta property="og:updated_time" content="2016-10-26T16:43:31.000Z">
+<meta property="og:image" content="ykfcol.com/Users/ykf/Downloads/activity.png">
+<meta property="og:updated_time" content="2016-10-31T15:07:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Gradle构建心得">
-<meta name="twitter:description" content="刚接触Android的人，可能对Gradle有点茫然。Gradle是什么？有效的管理Gradle有什么用？">
+<meta name="twitter:title" content="Activity的生命周期总结">
+<meta name="twitter:image" content="ykfcol.com/Users/ykf/Downloads/activity.png">
 
 
 
@@ -132,10 +131,10 @@
 
 
 
-  <link rel="canonical" href="ykfcol.com/2016/05/25/Grade构建心得/"/>
+  <link rel="canonical" href="ykfcol.com/2016/05/31/Activity的生命周期总结/"/>
 
 
-  <title> Gradle构建心得 | 杨凯丰的个人博客 </title>
+  <title> Activity的生命周期总结 | 杨凯丰的个人博客 </title>
 </head>
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
 
@@ -264,7 +263,7 @@
             
             
               
-                Gradle构建心得
+                Activity的生命周期总结
               
             
           </h1>
@@ -276,8 +275,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-25T17:32:11+08:00" content="2016-05-25">
-              2016-05-25
+            <time itemprop="dateCreated" datetime="2016-05-31T20:22:45+08:00" content="2016-05-31">
+              2016-05-31
             </time>
           </span>
 
@@ -306,8 +305,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/25/Grade构建心得/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/25/Grade构建心得/" itemprop="commentsCount"></span>
+                <a href="/2016/05/31/Activity的生命周期总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/31/Activity的生命周期总结/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -316,7 +315,7 @@
           
 
           
-		  	 <span id="/2016/05/25/Grade构建心得/"class="leancloud_visitors"  data-flag-title="Gradle构建心得">
+		  	 <span id="/2016/05/31/Activity的生命周期总结/"class="leancloud_visitors"  data-flag-title="Activity的生命周期总结">
             &nbsp; | &nbsp; 阅读次数
             </span>
 	 
@@ -333,98 +332,48 @@
       
 
       
-        <p>刚接触Android的人，可能对Gradle有点茫然。Gradle是什么？有效的管理Gradle有什么用？</p>
+        <p> <img src="/Users/ykf/Downloads/activity.png" alt="activity"></p>
 <a id="more"></a>
-<h2 id="为什么要管理Gradle"><a href="#为什么要管理Gradle" class="headerlink" title="为什么要管理Gradle?"></a>为什么要管理Gradle?</h2><p>随着项目的不断壮大，我们每天在build，签名，打包(分渠道)，发布，甚至项目依赖的更替，差异管理花费的时间越来越多了。都说程序员擅长“偷懒”，擅长写脚本(听说有人要消灭这些破坏世界和平的人？哈哈哈。。)，那么有没有一种工具可以帮我们简化这个过程，把这个过程用代码的方式描述出来？</p>
-<h2 id="如何有效的管理我们的Gradle脚本？"><a href="#如何有效的管理我们的Gradle脚本？" class="headerlink" title="如何有效的管理我们的Gradle脚本？"></a>如何有效的管理我们的Gradle脚本？</h2><h3 id="版本号与依赖管理"><a href="#版本号与依赖管理" class="headerlink" title="版本号与依赖管理"></a>版本号与依赖管理</h3><p>对项目的版本以及依赖库的版本号进行统一管理，这里不做详细说明，具体可参考<a href="http://www.jianshu.com/p/edd495d8efc8" target="_blank" rel="external">http://www.jianshu.com/p/edd495d8efc8</a></p>
-<h3 id="构建类型（BuildTypes"><a href="#构建类型（BuildTypes" class="headerlink" title="构建类型（BuildTypes)"></a>构建类型（BuildTypes)</h3><p>默认情况下，会创建release和debug两个版本，我们可以在里面配置我们想要的构建环境，例如：</p>
 <blockquote>
-<p>配置debug Build Type，以便release和debug两个版本同时存在到一个设备上</p>
+<p>上图以金字塔模型描述了activity的生命周期，系统新建了一个activity，每个回调函数会向上一阶移动，处于金字塔顶端时意味着当前activity处于前台并处于用户可与其进行交互的状态，用户退出这个activity，系统会调用下一阶的回调函数，直到activity被销毁。</p>
 </blockquote>
-<pre><code>buildTypes{
-   debug {   
-       applicationIdSuffix &quot;.debug&quot;
-    }
-}  
-</code></pre><blockquote>
-<p>开启混淆</p>
-</blockquote>
-<p>  (混淆原则可参考<a href="http://blog.csdn.net/chen930724/article/details/49687067" target="_blank" rel="external">http://blog.csdn.net/chen930724/article/details/49687067</a>)</p>
-<pre><code>buildTypes{
-   release {   
-        minifyEnabled true   //如果为true，对应的task会被创建
-        proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;
-    }
-}
-</code></pre><blockquote>
-<p>控制输出(这里以修改输出apk包名为例)</p>
-</blockquote>
-<pre><code>applicationVariants.all { variant -&gt;   
-   variant.outputs.each { output -&gt; 
-      def outputFile = output.outputFile        
-      if (outputFile != null &amp;&amp; outputFile.name.endsWith(&apos;.apk&apos;)) {   
-          // 输出apk名称为Test_v1.0_2016-09-22_GooglePlay.apk，可任意组合
-          def fileName = &quot;Test_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk&quot;           
-          output.outputFile = new File(outputFile.parent, fileName)        }    
-      }
- }
-</code></pre><p>在打包的时候，可根据自己的需要，生成自己想要的输出。</p>
-<h3 id="分渠道打包"><a href="#分渠道打包" class="headerlink" title="分渠道打包"></a>分渠道打包</h3><blockquote>
-<p>首先在AndroidManifest.xml里配置PlaceHolder</p>
-</blockquote>
-<pre><code>&lt;meta-data android:name=&quot;CHANNEL&quot;       
-    android:value=&quot;${CHANNEL_VALUE}&quot; /&gt;
-</code></pre><blockquote>
-<p>可在defaultConfig中配置渠道的默认值</p>
-</blockquote>
-<pre><code>defaultConfig { 
-    manifestPlaceholders = [ CHANNEL_VALUE:&quot;GooglePlay&quot; ] 
-} 
-</code></pre><blockquote>
-<p>接下来定义我们需要的多个渠道</p>
-</blockquote>
-<pre><code>productFlavors {
-    GooglePlay{}
-    huawei{}
-    xiaomi{}
-    baidu{}
-}
-</code></pre><h3 id="配置签名信息（SigningConfigs）"><a href="#配置签名信息（SigningConfigs）" class="headerlink" title="配置签名信息（SigningConfigs）"></a>配置签名信息（SigningConfigs）</h3><blockquote>
-<p>签名一个应用需要（debug使用默认的）以下文件</p>
-</blockquote>
+<p>在实际的项目中，也许不需要实现所有的生命周期方法，但是了解每一个方法的回调时机并在其中填充相应功能，使得APP能够像用户期望那样执行是很有必要的。如何实现一个符合用户期望的APP，我们需要注意以下几点：</p>
 <ul>
-<li>storeFile 签名文件</li>
-<li>storePassword  密码</li>
-<li>keyAlias  别名</li>
-<li>keyPassword  key密码</li>
+<li>使用APP的时候，不会因为突然来电或者切换到其他APP而引起crash</li>
+<li>用户在没使用某个组件的时候不会消耗系统资源</li>
+<li>离开APP一段时间，在返回不会丢失用户数据</li>
+<li>横竖屏切换时不会crash或者丢失用户数据</li>
 </ul>
+<h2 id="启动与销毁Activity"><a href="#启动与销毁Activity" class="headerlink" title="启动与销毁Activity"></a>启动与销毁Activity</h2><h3 id="启动Activity"><a href="#启动Activity" class="headerlink" title="启动Activity"></a>启动Activity</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">    super.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.main_activity);</div><div class="line">    mTextView = (TextView) findViewById(R.id.text_message);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在onCreate()方法中，我们建立一个activity需要的基本元素，需要注意的是在此方法中<strong>尽量少做事情</strong>，以免程序启动太久看不到界面。</p>
 <blockquote>
-<p>配置release版本的签名信息：</p>
+<p>在onCreate()方法中，有一个参数savedInstanceState，将会在后面总结它的用法</p>
 </blockquote>
-<pre><code>release { 
-    storeFile file(&quot;other.keystore&quot;) 
-    storePassword &quot;android&quot;
-    keyAlias &quot;androiddebugkey&quot; 
-    keyPassword &quot;android&quot; }
-</code></pre><p><strong>签名是个很敏感的东西，在具体项目的使用中建议用配置文件来保存各种签名的信息，需要的时候进行读取。</strong></p>
-<h3 id="添加java8支持"><a href="#添加java8支持" class="headerlink" title="添加java8支持"></a>添加java8支持</h3><pre><code>apply plugin: &apos;me.tatarka.retrolambda&apos;
-compileOptions {    
-     sourceCompatibility JavaVersion.VERSION_1_8     
-     targetCompatibility JavaVersion.VERSION_1_8}
-</code></pre><h3 id="去除不想添加到apk的配置文件"><a href="#去除不想添加到apk的配置文件" class="headerlink" title="去除不想添加到apk的配置文件"></a>去除不想添加到apk的配置文件</h3><pre><code>packagingOptions { 
-    exclude &apos;META-INF/DEPENDENCIES.txt&apos; 
-    exclude &apos;META-INF/LICENSE.txt&apos; 
-    exclude &apos;META-INF/NOTICE.txt&apos; 
-    exclude &apos;META-INF/NOTICE&apos;
-    exclude &apos;META-INF/LICENSE&apos; 
-    exclude &apos;META-INF/DEPENDENCIES&apos; 
-    exclude &apos;META-INF/notice.txt&apos; 
-    exclude &apos;META-INF/license.txt&apos; 
-    exclude &apos;META-INF/dependencies.txt&apos; 
-    exclude &apos;META-INF/LGPL2.1&apos; }
-</code></pre><p>Android Studio 2.2版本引入新的apk分析功能，感兴趣的童鞋可以去研究研究自己应用的结构</p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>关于Gradle配置的内容还有很多，欢迎小伙伴们补充~</p>
-
+<h3 id="销毁Activity"><a href="#销毁Activity" class="headerlink" title="销毁Activity"></a>销毁Activity</h3><p>Activity生命周期的最后一个回调是onDestory()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public void onDestroy() &#123;</div><div class="line">    super.onDestroy();  // Always call the superclass</div><div class="line">    android.os.Debug.stopMethodTracing();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果activity含有在onCreate调用时创建的后台线程，或者其他可能导致内存泄漏的资源，则应该在onDestory中清理资源、杀死后台线程。</p>
+<h2 id="暂停与恢复Activity"><a href="#暂停与恢复Activity" class="headerlink" title="暂停与恢复Activity"></a>暂停与恢复Activity</h2><h3 id="暂停Activity"><a href="#暂停Activity" class="headerlink" title="暂停Activity"></a>暂停Activity</h3><p>在正常使用APP时，前端的activity可能被其他可见的组件阻塞，从而导致当前的activity进入Pause状态。例如打开一个对话框，之前的activity会被暂停。只要之前的activity一直处于部分可见，这个activity就会一直处于Pause状态。</p>
+<p>activity一旦进入paused状态，系统就会调用onPause()方法，通常我们应该在onPause()方法中做的事有：</p>
+<ul>
+<li>停止动画或其他正在进行的操作</li>
+<li>提交用户期待保存的东西</li>
+<li>释放系统资源，例如Camera</li>
+</ul>
+<p>需要注意的是，为了切换顺畅我们要减少在onPause()方法里面的工作量</p>
+<h3 id="恢复Activity"><a href="#恢复Activity" class="headerlink" title="恢复Activity"></a>恢复Activity</h3><p>当用户从Paused状态恢复到activity时，系统会调用onResume()方法。</p>
+<p>在onResume()方法中，我们需要初始化在onPause()方法中释放的资源。</p>
+<h2 id="停止与重启Activity"><a href="#停止与重启Activity" class="headerlink" title="停止与重启Activity"></a>停止与重启Activity</h2><p>activity在以下的一些关键场景会涉及停止和重启：</p>
+<ul>
+<li>用户切换到其他APP，我们的APP是停止的，在切回来，会被重启</li>
+<li>打开一个新的activity，第一个activity会被停止，back回来会被重启</li>
+<li>接到一个电话</li>
+</ul>
+<h2 id="重新创建Activity"><a href="#重新创建Activity" class="headerlink" title="重新创建Activity"></a>重新创建Activity</h2><h3 id="保存Activity状态"><a href="#保存Activity状态" class="headerlink" title="保存Activity状态"></a>保存Activity状态</h3><p>当我们的activity开始Stop，系统会调用onSaveInstanceState()，这个方法会默认保存Activity的状态信息，为了保存更多额外的信息，你需要把信息添加到Bundle对象中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public void onSaveInstanceState(Bundle savedInstanceState) &#123;</div><div class="line">    // Save the user&apos;s current game state</div><div class="line">    savedInstanceState.putInt(STATE_SCORE, mCurrentScore);</div><div class="line">    savedInstanceState.putInt(STATE_LEVEL, mCurrentLevel);</div><div class="line"></div><div class="line">    super.onSaveInstanceState(savedInstanceState);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="恢复Activity-1"><a href="#恢复Activity-1" class="headerlink" title="恢复Activity"></a>恢复Activity</h3><p>我们可以通过两种方式恢复Bundle中保存的状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">    super.onCreate(savedInstanceState); </div><div class="line"></div><div class="line">    if (savedInstanceState != null) &#123;</div><div class="line">        // Restore value of members from saved state</div><div class="line">        mCurrentScore = savedInstanceState.getInt(STATE_SCORE);</div><div class="line">        mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);</div><div class="line">    &#125; else &#123;</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或者实现onRestoreInstanceState()方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public void onRestoreInstanceState(Bundle savedInstanceState) &#123;</div><div class="line">    // Always call the superclass so it can restore the view hierarchy</div><div class="line">    super.onRestoreInstanceState(savedInstanceState);</div><div class="line"></div><div class="line">    // Restore state members from saved instance</div><div class="line">    mCurrentScore = savedInstanceState.getInt(STATE_SCORE);</div><div class="line">    mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -449,17 +398,13 @@ compileOptions {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/24/写在前面的话/" rel="next" title="写在前面的话">
-                <i class="fa fa-chevron-left"></i> 写在前面的话
+              <a href="/2016/05/28/自定义View学习与实践-NumberProgress/" rel="next" title="自定义View学习与实践-NumberProgress">
+                <i class="fa fa-chevron-left"></i> 自定义View学习与实践-NumberProgress
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/26/浅谈一个APP的登录功能/" rel="prev" title="浅谈一个APP的登录功能">
-                浅谈一个APP的登录功能 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -485,8 +430,8 @@ compileOptions {
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/25/Grade构建心得/"
-           data-title="Gradle构建心得" data-url="ykfcol.com/2016/05/25/Grade构建心得/">
+      <div class="ds-thread" data-thread-key="2016/05/31/Activity的生命周期总结/"
+           data-title="Activity的生命周期总结" data-url="ykfcol.com/2016/05/31/Activity的生命周期总结/">
       </div>
     
   </div>
@@ -570,7 +515,7 @@ compileOptions {
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要管理Gradle"><span class="nav-number">1.</span> <span class="nav-text">为什么要管理Gradle?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何有效的管理我们的Gradle脚本？"><span class="nav-number">2.</span> <span class="nav-text">如何有效的管理我们的Gradle脚本？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#版本号与依赖管理"><span class="nav-number">2.1.</span> <span class="nav-text">版本号与依赖管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建类型（BuildTypes"><span class="nav-number">2.2.</span> <span class="nav-text">构建类型（BuildTypes)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分渠道打包"><span class="nav-number">2.3.</span> <span class="nav-text">分渠道打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置签名信息（SigningConfigs）"><span class="nav-number">2.4.</span> <span class="nav-text">配置签名信息（SigningConfigs）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加java8支持"><span class="nav-number">2.5.</span> <span class="nav-text">添加java8支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去除不想添加到apk的配置文件"><span class="nav-number">2.6.</span> <span class="nav-text">去除不想添加到apk的配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">3.</span> <span class="nav-text">最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#启动与销毁Activity"><span class="nav-number">1.</span> <span class="nav-text">启动与销毁Activity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动Activity"><span class="nav-number">1.1.</span> <span class="nav-text">启动Activity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#销毁Activity"><span class="nav-number">1.2.</span> <span class="nav-text">销毁Activity</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#暂停与恢复Activity"><span class="nav-number">2.</span> <span class="nav-text">暂停与恢复Activity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#暂停Activity"><span class="nav-number">2.1.</span> <span class="nav-text">暂停Activity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#恢复Activity"><span class="nav-number">2.2.</span> <span class="nav-text">恢复Activity</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#停止与重启Activity"><span class="nav-number">3.</span> <span class="nav-text">停止与重启Activity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重新创建Activity"><span class="nav-number">4.</span> <span class="nav-text">重新创建Activity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#保存Activity状态"><span class="nav-number">4.1.</span> <span class="nav-text">保存Activity状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#恢复Activity-1"><span class="nav-number">4.2.</span> <span class="nav-text">恢复Activity</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
