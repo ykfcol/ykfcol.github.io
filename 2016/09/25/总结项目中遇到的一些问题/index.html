@@ -108,7 +108,7 @@
 <meta property="og:url" content="ykfcol.com/2016/09/25/总结项目中遇到的一些问题/index.html">
 <meta property="og:site_name" content="杨凯丰的个人博客">
 <meta property="og:description" content="项目问题汇总">
-<meta property="og:updated_time" content="2016-11-30T07:34:04.000Z">
+<meta property="og:updated_time" content="2016-11-30T07:42:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="总结项目中遇到的一些问题">
 <meta name="twitter:description" content="项目问题汇总">
@@ -333,41 +333,40 @@
       
 
       
-        <p>项目问题汇总</p>
-<a id="more"></a>
+        <h3 id="项目问题汇总"><a href="#项目问题汇总" class="headerlink" title="项目问题汇总"></a>项目问题汇总</h3><a id="more"></a>
 <ul>
-<li>Toast多次显示问题</li>
+<li><strong>Toast多次显示问题</strong></li>
 </ul>
-<p>问题描述：界面中使用次数过多且重复的Toast提示</p>
-<p>解决办法：判断Toast不为null的时候才去makeText</p>
+<p><strong>问题描述</strong>：界面中使用次数过多且重复的Toast提示</p>
+<p><strong>解决办法</strong>：判断Toast不为null的时候才去makeText</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showToast</span><span class="params">(Context context，String msg)</span></span>&#123;</div><div class="line">  <span class="keyword">if</span> (toast == <span class="keyword">null</span>) &#123;</div><div class="line">    	toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">	    toast.setText(msg);</div><div class="line">        &#125;</div><div class="line">    	toast.show();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
-<li>button快速多次点击问题</li>
+<li><strong>button快速多次点击问题</strong></li>
 </ul>
-<p>问题描述：button在快速点击时响应多次事件</p>
-<p>解决办法：1.设置button的点击状态（不推荐）   2.判断两次点击的间隔时间，太短则不响应  3.弹出进度条</p>
+<p><strong>问题描述</strong>：button在快速点击时响应多次事件</p>
+<p><strong>解决办法</strong>：1.设置button的点击状态（不推荐）   2.判断两次点击的间隔时间，太短则不响应  3.弹出进度条</p>
 <ul>
-<li>scrollView嵌套listview，listview显示不全问题</li>
+<li><strong>scrollView嵌套listview，listview显示不全问题</strong></li>
 </ul>
-<p>问题描述：scrollView嵌套listview，listview显示不全</p>
-<p>解决办法：自定义listview，重写listview的onMeasure()方法</p>
+<p><strong>问题描述</strong>：scrollView嵌套listview，listview显示不全</p>
+<p><strong>解决办法</strong>：自定义listview，重写listview的onMeasure()方法</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE &gt;&gt; <span class="number">2</span></div><div class="line">            , MeasureSpec.AT_MOST);</div><div class="line">    <span class="keyword">super</span>.onMeasure(widthMeasureSpec, expandSpec);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>解析：自定义控件的高度，makeMeasureSpec方法生成一个带有大小和模式的int值（int的前两位表示模式，后30位表示大小），控件的高度采用最大值模式（AT_MOST，大小不能超过这个值），而这个最大值就是通过int值的最大值左移2位获取。</p>
+<p><strong>解析</strong>：自定义控件的高度，makeMeasureSpec方法生成一个带有大小和模式的int值（int的前两位表示模式，后30位表示大小），控件的高度采用最大值模式（AT_MOST，大小不能超过这个值），而这个最大值就是通过int值的最大值左移2位获取。</p>
 <ul>
-<li>点击listview的item没反应问题</li>
+<li><strong>点击listview的item没反应问题</strong></li>
 </ul>
-<p>问题描述：如上</p>
-<p>解决办法：item项中可能存在button，imageButton这些控件把整个item的焦点抢去了，把button换成textView就可以了</p>
+<p><strong>问题描述</strong>：如上</p>
+<p><strong>解决办法</strong>：item项中可能存在button，imageButton这些控件把整个item的焦点抢去了，把button换成textView就可以了</p>
 <ul>
-<li>网络请求时url乱码问题</li>
+<li><strong>网络请求时url乱码问题</strong></li>
 </ul>
-<p>问题描述：如上</p>
-<p>解决办法：转换url的格式</p>
+<p><strong>问题描述</strong>：如上</p>
+<p><strong>解决办法</strong>：转换url的格式</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String str = URLEncoder.encode(str ,<span class="string">"UTF-8"</span>);</div></pre></td></tr></table></figure>
 <ul>
-<li>APP首次启动白屏过长问题</li>
+<li><strong>APP首次启动白屏过长问题</strong></li>
 </ul>
-<p>解决办法：修改style中的android:windowBackground</p>
+<p><strong>解决办法</strong>：修改style中的android:windowBackground</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;item name=&quot;android:windowBackground&quot;&gt;图片或者颜色&lt;/item&gt;</div></pre></td></tr></table></figure>
 <p>或者设置背景透明色</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;item name=&quot;android:windowIsTranslucent&quot;&gt;true&lt;/item&gt;</div></pre></td></tr></table></figure>
@@ -403,6 +402,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/25/优化笔记/" rel="prev" title="优化笔记">
+                优化笔记 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -474,7 +477,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -513,7 +516,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目问题汇总"><span class="nav-number">1.</span> <span class="nav-text">项目问题汇总</span></a></li></ol></div>
             
           </div>
         </section>
